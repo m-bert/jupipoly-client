@@ -7,16 +7,20 @@ export default function LoginForm(props: any) {
     const [nickname, changeNickname] = useState("");
     const [display, hide] = useState(true);
 
-    function handleNickname(e: any) {
+    function handleNickname(e: React.ChangeEvent<HTMLInputElement>) {
         changeNickname(e.target.value);
     }
 
     function enterGame() {
         if (nickname != "") {
             props.io.emit("add-player", nickname);
+
+            // if player with choosen nick already exists //
             props.io.on("player-exists", (message: string): void => {
                 console.log(message)
             })
+
+            // success => hide login form //
             props.io.on("player-added", (): void => {
                 hide(false);
             })
