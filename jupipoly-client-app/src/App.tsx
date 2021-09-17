@@ -1,23 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-import { createTheme } from '@mui/material';
-import { purple, blue } from '@mui/material/colors';
+import { createTheme } from "@mui/material";
+import { purple, blue } from "@mui/material/colors";
 
-import LoginForm from './components/LoginForm';
+import LoginForm from "./components/LoginForm";
 
 const theme = createTheme({
   palette: {
     primary: purple,
-    secondary: blue
-  }
-})
+    secondary: blue,
+  },
+});
 
-function App() {
-  return (
-    <LoginForm theme={theme}/>
-  );
+function App(props: any) {
+  return <LoginForm theme={theme} io={props.io} />;
 }
 
 export default App;

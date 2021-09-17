@@ -3,16 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
+// other imports
 import { io } from "socket.io-client";
 
 const socket = io("http://127.0.0.1:3300");
 socket.on("connection", () => {});
-socket.emit("test-emit", "hello");
-socket.on("test-res", (res) => {});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App io={socket} />
   </React.StrictMode>,
   document.getElementById("root")
 );
