@@ -1,8 +1,15 @@
 import { List, Grid } from '@mui/material'
 import React from 'react'
+import { Socket } from 'socket.io-client';
 import Player from './Player';
 
-export default function WaitingRoom() {
+interface propsType {
+    io: Socket,
+    displayStatus: boolean,
+    handleComponentDisplay: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function WaitingRoom(props: propsType) {
 
     const nicknames: Array<string> = ["twoja stara", "zdzdzxdzxdxdzxdxdxd", "jupik"];
     let playersList: Array<JSX.Element> = []

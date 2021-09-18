@@ -1,28 +1,30 @@
 import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import { Socket } from "socket.io-client";
 
 // theme //
-import { createTheme } from "@mui/material";
-import { purple, blue } from "@mui/material/colors";
+import theme from './system/Theme'
 
 // components //
 import LoginForm from "./components/LoginForm";
 import WaitingRoom from "./components/WaitingRoom/WaitingRoom";
+import { ThemeProvider } from "@mui/system";
 
-const theme = createTheme({
-  palette: {
-    primary: purple,
-    secondary: blue,
-  },
-});
+interface propsType {
+  io: Socket
+}
 
-function App(props: any) {
+function App(props: propsType) {
+
+  const [loginFormDisplayStatus, loginFormDisplay] = useState(true);
+  const [waitingRoomDisplayStatus, waitingRoomDisplay] = useState(false);
+
   return (
-    <>
-      <LoginForm theme={theme} io={props.io} />
-      <WaitingRoom />
-    </>
+    <ThemeProvider theme={theme}>
+      <LoginForm io={props.io} displayStatus={loginFormDisplayStatus} handleComponentDisplay={loginFormDisplay} />
+      <WaitingRoom io={props.io} displayStatus={waitingRoomDisplayStatus} handleComponentDisplay={loginFormDisplay} />
+    </ThemeProvider>
   )
 }
 

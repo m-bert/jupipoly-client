@@ -1,12 +1,12 @@
-import { ListItem } from '@mui/material'
+import { ListItem, Theme } from '@mui/material'
 import React from 'react'
 
-interface propType {
+interface propsType {
     nickname: string
 }
 
-export default function Player(props: propType): JSX.Element {
+export default function Player(props: propsType): JSX.Element {
     return (
-        <ListItem>{props.nickname}</ListItem>
+        <ListItem sx={{ color: 'white' }}>{props.nickname}</ListItem>
     )
 }
